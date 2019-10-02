@@ -172,7 +172,7 @@ Here the type of our `CsvModelBinder` is set as `binderType` to that attribute.
 
 [Steve Gordon](https://twitter.com/stevejgordon) wrote about a second option in his blog post: [Custom ModelBinding in ASP.NET MVC Core](https://www.stevejgordon.co.uk/html-encode-string-aspnet-core-model-binding/). He uses a `ModelBinderProvider` to add the `ModelBinder` to the list of existing ones. 
 
-I personally prefer the explicit declaration, because the most custom `ModelBinders` will be pretty specific to an action or to a specific type and `there's` no hidden magic in the background.
+I personally prefer the explicit declaration, because the most custom `ModelBinders` will be pretty specific to an action or to a specific type and there's no hidden magic in the background.
 
 ## Testing the ModelBinder
 
