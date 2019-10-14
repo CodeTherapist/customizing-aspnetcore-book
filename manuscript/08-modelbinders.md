@@ -142,9 +142,9 @@ public class CsvModelBinder : IModelBinder
 
 In the method `BindModelAsync` we get the `ModelBindingContext` with all the information in it we need to get the data and to de-serialize it.
 
-First the `context` get's checked against null values. After that we set a default argument name to model, if none is specified. If this is done we are able to fetch the value by the name we previously set. 
+First the `context` get's checked against null. After that we set a default argument name to the model, if none is specified. If this is done we are able to fetch the value by the name we previously set. 
 
-If there's no value, we shouldn't throw an exception in this case. The reason is that maybe the next configured `ModelBinder` is responsible. If we throw an exception the execution of the current request is broken and the next configured `ModelBinder` doesn't have the chance to get executed.
+If there's no value, we shouldn't throw an exception in this case. The reason is that maybe the next configured `ModelBinder` is responsible. If we throw an exception the execution of the current request is canceled and the next configured `ModelBinder` doesn't have the chance to get executed.
 
 With a `StringReader` we read the value into the `CsvReader` and de-serialize it to the list of models. We get the type for the de-serialization out of the `ModelMetadata` property. This contains all the relevant information about the current model.
 
