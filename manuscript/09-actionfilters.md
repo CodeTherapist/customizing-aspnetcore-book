@@ -1,10 +1,10 @@
 # Part 09: ActionFilter
 
-We keep on customizing on the controller level in this ninth post of this series. I'll have a look into ActionFilters and hot to create your own ActionFilter to keep your Actions small and readable.
+We keep on customizing on the controller level in this ninth post of this series. I'll have a look into ActionFilters and how to create your own ActionFilter to keep your Actions small and readable.
 
 ## About ActionFilters
 
-Action filters are a little bit like MiddleWares, but are executed immediately on a specific action or on all actions of a specific controller. If you apply an ActionFilter as a global one, it executes on all actions in your application. ActionFilters are created to execute code right before the actions is executed or after the action is executed. They are introduced to execute aspects that are not part of the actual action logic. Authorization is such an aspect. I'm sure you already know the `AuthorizeAttribute` to allow users or groups to access specific Actions or Controllers. The `AuthorizeAttribute` actually is an ActionFilter. It checks whether the logged-on user is authorized or not. If not it redirects to the log-on page.
+Action filters are a little bit like middlewares, but are executed immediately on a specific action or on all actions of a specific controller. If you apply an ActionFilter as a global one, it executes on all actions in your application. ActionFilters are created to execute code right before or after the action is executed. They are introduced to execute aspects that are not part of the actual action logic. Authorization is such an aspect. I'm sure you already know the `AuthorizeAttribute` to allow users or groups to access specific Actions or Controllers. The `AuthorizeAttribute` actually is an ActionFilter. It checks whether the logged-on user is authorized or not. If not it redirects to the login page.
 
 The next sample shows the skeletons of a normal ActionFilters and an async ActionFilter:
 
@@ -35,7 +35,7 @@ public class SampleAsyncActionFilter : IAsyncActionFilter
 }
 ```
 
-As you can see here there are always two section to place code to execute before and after the action is executed. This ActionFilters cannot be uses as attributes. If you want to use the ActionFilters as attributes in your Controllers, you need to drive from Attribute or from `ActionFilterAttribute`:
+As you can see here, there are always two methods to place code to execute before and after the target action is executed. This ActionFilters cannot be used as attribute. If you want to use the ActionFilters as attribute in your Controllers, you need to derive from `Attribute` or from `ActionFilterAttribute`:
 
 ```csharp
 public class ValidateModelAttribute : ActionFilterAttribute
@@ -50,9 +50,9 @@ public class ValidateModelAttribute : ActionFilterAttribute
 }
 ```
 
-This code shows a simple ActionFilter which always returns a `BadRequestObjectResult`, if the `ModelState` is not valid. This may be useful an a Web API as a default check on POST, PUT and PATCH requests. This could be extended with a lot more validation logic. We'll see how to use it later on.
+This code shows a simple ActionFilter which always returns a `BadRequestObjectResult`, if the `ModelState` is not valid. This may be useful within a Web API as a default check on `POST`, `PUT` and `PATCH` requests. This could be extended with a lot more validation logic. We'll see how to use it later on.
 
-Another possible use case for an ActionFilter is logging. You don't need to log in the Controllers and Actions directly. You can do this in an action filter to not mess up the actions with not relevant code:
+Another possible use case for an ActionFilter is logging. You don't need to log in the controller Actions directly. You can do this in an action filter to keep your actions readable with relevant code:
 
 ```csharp
 public class LoggingActionFilter : IActionFilter
@@ -78,7 +78,7 @@ public class LoggingActionFilter : IActionFilter
 }
 ```
 
-This logs an information message out to the console. You are able to get more information about the current Action out of the `ActionExecutingContext` or the `ActionExecutedContext` e.g. the arguments, the argument values and so on. This makes the ActionFilters pretty useful.
+This logs an informational message out to the console. You are able to get more information about the current Action out of the `ActionExecutingContext` or the `ActionExecutedContext` e.g. the arguments, the argument values and so on. This makes the ActionFilters pretty useful.
 
 ## Using the ActionFilters
 
