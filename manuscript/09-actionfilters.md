@@ -95,7 +95,7 @@ public ActionResult<Person> Post([FromBody] Person model)
 }
 ```
 
-Here we use the `ValidateModelAttribute` that checks the `ModelState` and returns a `BadRequestObjectResult` in case the `ModelState` is invalid and I don't need to check the `ModelState` in the actual Action.
+Here we use the `ValidateModelAttribute` that checks the `ModelState` and returns a `BadRequestObjectResult` in case the `ModelState` is invalid and we don't need to check the `ModelState` in the actual Action.
 
 To register ActionFilters globally you need to extend the MVC registration in the `CofnigureServices` method of the `Startup.cs`:
 
@@ -108,11 +108,11 @@ services.AddControllersWithViews()
     });
 ```
 
-ActionFilters registered like this are getting executed on every action. This way you are able to use ActionFilters that don't derive from Attribute.
+ActionFilters registered like this, are getting executed on every action. This way you are able to use ActionFilters that don't derive from Attribute.
 
 The Logging `LoggingActionFilter` we created previously is a little more special. It is depending on an instance of an `ILoggerFactory`, which need to be passed into the constructor. This won't work well as an attribute, because Attributes don't support constructor injection via dependency injection. The `ILoggerFactory` is registered in the ASP.NET Core dependency injection container and needs to be injected into the `LoggingActionFilter`.
 
-Because of this there are some more ways to register ActionFilters. Globally we are able to register it as a type, that gets instantiated by the dependency injection container and the dependencies can be solved by the container.
+Because of this, there are some more ways to register ActionFilters. Globally we are able to register it as a type, that gets instantiated by the dependency injection container and the dependencies can be solved by the container.
 
 ```csharp
 services.AddControllersWithViews()
@@ -122,7 +122,7 @@ services.AddControllersWithViews()
     })
 ```
 
-This works well. We now have the `ILoggerFactory` in the filter
+This works well. We now have the `ILoggerFactory` in the filter.
 
 To support automatic resolution in Attributes, you need to use the `ServiceFilterAttribute` on the Controller or Action level:
 
@@ -138,7 +138,7 @@ In addition to the global filter registration, the ActionFilter needs to be regi
 services.AddSingleton<LoggingActionFilter>();
 ```
 
-To be complete there is another way to use ActionFilters that needs arguments passed into the constructor.  You can use the `TypeFilterAttribute` to automatically instantiate the filter. But using this attribute the Filter isn't instantiate by the dependency injection container and the arguments need to get specified as argument of the `TypeFilterAttribute`. See the next snippet from the [docs](https://docs.microsoft.com/en-us/aspnet/core/mvc/controllers/filters):
+To be complete, there is another way to use ActionFilters that needs arguments passed into the constructor.  You can use the `TypeFilterAttribute` to automatically instantiate the filter. But using this attribute, the Filter isn't instantiate by the dependency injection container and the arguments need to get specified as argument of the `TypeFilterAttribute`. See the next snippet from the [docs](https://docs.microsoft.com/en-us/aspnet/core/mvc/controllers/filters):
 
 ```csharp
 [TypeFilter(typeof(AddHeaderAttribute),
@@ -150,7 +150,7 @@ public IActionResult Hi(string name)
 
 ```
 
-The Type of the filter end the arguments are specified with the `TypeFilterAttribute` 
+The Type of the filter and the arguments are specified with the `TypeFilterAttribute`.
 
 ## Conclusion
 
