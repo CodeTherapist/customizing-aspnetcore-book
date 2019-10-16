@@ -226,6 +226,6 @@ TagHelpers are pretty useful to reuse parts of the view and to simplify and clea
 - https://www.red-gate.com/simple-talk/dotnet/asp-net/asp-net-core-tag-helpers-bootstrap/
 - https://www.jqwidgets.com/asp.net-core-mvc-tag-helpers/
 
-This part was initially planned as the last part of this series, but I found some more interesting topics. If you also have some nice ideas to write about feel free to drop a comment in the introduction post of this series.
+This part was initially planned as the last part of this series, but I found some more interesting topics. If you also have some nice ideas to write about feel free to contact me.
 
-In the next post, I'm going to write about how to customize the Hosting of ASP.NET Core Wep Applications: Customizing ASP.NET Core Part 11.
+In the next chapter, I'm going to write about how to customize the Hosting of ASP.NET Core Wep Applications.
