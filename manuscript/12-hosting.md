@@ -4,7 +4,7 @@ In this 12th part of this series, I'm going to write about how to customize host
 
 > This will change in ASP.NET Core 3.0. I anyway decided to do this post about ASP.NET Core 2.2 because it still needs some time until ASP.NET Core 3.0 is released.
 
-This post is just an overview bout the different kind of application hosting. It is surely possible to go a lot more into the details for each topic, but this would increase the size of this post a lot and I need some more topics for future blog posts ;-)
+This post is just an overview but the different kind of application hosting. It is surely possible to go a lot more into the details for each topic, but this would increase the size of this post a lot and I need some more topics for future blog posts ;-)
 
 ## Quick setup
 
@@ -27,7 +27,7 @@ And voila, we get a simple project open in VS Code:
 
 ## WebHostBuilder
 
-Like in the last post, we will focus on the `Program.cs`. The `WebHostBuilder` is our friend. This is where we configure and create the web host. The next snippet is the default configuration of every new ASP.NET Core web we create using `File => New => Project` in Visual Studio or `dotnet new` with the .NET CLI:
+Like in the last chapter, we will focus on the `Program.cs`. The `WebHostBuilder` is our friend. This is where we configure and create the web host. The next snippet is the default configuration of every new ASP.NET Core web we create using `File => New => Project` in Visual Studio or `dotnet new` with the .NET CLI:
 
 ```csharp
 public class Program
@@ -43,7 +43,7 @@ public class Program
 }
 ```
 
-As we already know from the previous posts the default build has all the needed stuff pre-configured. All you need to run an application successfully on Azure or on an on-premise IIS is configured for you.
+As we already know from the previous chapters the default template has all the needed stuff pre-configured. All you need to run an application successfully on Azure or on an on-premise IIS is configured for you.
 
 But you are able to override almost all of this default configurations. Also the hosting configuration.
 
@@ -62,7 +62,7 @@ After the `WebHostBuilder` is created we can use various functions to configure 
 >
 > Docs: https://docs.microsoft.com/en-us/aspnet/core/fundamentals/servers/kestrel
 
-This first argument is a `WebHostBuilderContext` to access already configured hosting settings or the configuration itself. The second argument is an object to configure Kestrel. This snippet shows what we did in the last post to configure the socket endpoints where the host needs to listen to:
+This first argument is a `WebHostBuilderContext` to access already configured hosting settings or the configuration itself. The second argument is an object to configure Kestrel. This snippet shows what we did in the last chapter, to configure the socket endpoints where the host needs to listen to:
 
 ```csharp
 .UseKestrel((host, options) =>
@@ -82,7 +82,7 @@ This will override the default configuration where you are able to pass in URLs,
 
 ### HTTP.sys
 
-Do you know that there is another hosting option? A different web server implementation? It is [HTTP.sys](https://docs.microsoft.com/en-us/aspnet/core/fundamentals/servers/httpsys). This is a pretty mature library deep within Windows that can be used to host your ASP.NET COre application.
+Do you know that there is another hosting option? A different web server implementation? It is [HTTP.sys](https://docs.microsoft.com/en-us/aspnet/core/fundamentals/servers/httpsys). This is a pretty mature library deep within Windows that can be used to host your ASP.NET Core application.
 
 ```csharp
 .UseHttpSys(options =>
@@ -99,7 +99,7 @@ Also the IIS is running on top of HTTP.sys for years. Which means `UseHttpSys()`
 
 ### Hosting on IIS 
 
-An ASP.NET Core Application shouldn't be directly exposed to the internet, even if it's supported for even Kestrel or the HTTP.sys. It would be the best to have something like a reverse proxy in between or at least a service that watches the hosting process. For ASP.NET Core the IIS isn't only a reverse proxy. It also takes care of the hosting process in case it brakes because of an error or whatever. It'll restart the process in that case. Also Nginx may be used as an reverse proxy on Linux that also takes care of the hosting process.
+An ASP.NET Core Application shouldn't be directly exposed to the internet, even if it's supported for even Kestrel or the HTTP.sys. It would be the best to have something like a reverse proxy in between or at least a service that watches the hosting process. For ASP.NET Core the IIS isn't only a reverse proxy. It also takes care of the hosting process in case it fails because of an error or whatever. It'll restart the process in that case. Also Nginx may be used as an reverse proxy on Linux that also takes care of the hosting process.
 
 To host an ASP.NET Core web on an IIS or on Azure you need to publish it first. Publishing doesn't only compiles the project. It also prepares the project to host it on IIS, on Azure or on an webserver on Linux like Nginx. 
 
@@ -115,7 +115,7 @@ And on the IIS? Just create a new web and map it to the folder where you placed 
 
 ![](images/customize-aspnetcore/iis-hosting.png)
 
-It get's a little more complicated if you need to change the security, if you have some database connections and so on. This would be a topic for a separate blog post. But in this small sample it simply works:
+It get's a little more complicated if you need to change the security, if you have some database connections and so on. This would be a topic for a further chapter or a blog post. But in this small sample it simply works:
 
 ![](images/customize-aspnetcore/iis-hosted.PNG)
 
@@ -140,4 +140,4 @@ ASP.NET Core and the .NET CLI already contain all the tools to get it running on
 
 I'll definitely go deeper into some of the topics and in ASP.NET Core there are some pretty cool hosting features that make it a lot more flexible to host your application: 
 
-Currently we have the `WebHostBuilder` that creates the hosting environment of the applications. In 3.0 we get the `HostBuilder` that is able to create a hosting environment that is completely independent from any web context. I'm going to write about the `HostBuilder` in one of the next blog posts.
+Currently we have the `WebHostBuilder` that creates the hosting environment of the applications. In 3.0 we get the `HostBuilder` that is able to create a hosting environment that is completely independent from any web context.
