@@ -5,7 +5,7 @@ When I wrote the blog post about HTTPS, a reader asked how to configure the HTTP
 > "How would I go about using user secrets to pass the password to `listenOptions.UseHttps(...)`? I can't fetch the configuration from within `Program.cs` no matter what I try. I've been Googling solutions for like a half hour so any help would be greatly appreciated."
 > [https://github.com/JuergenGutsch/blog/issues/110#issuecomment-441177441](https://github.com/JuergenGutsch/blog/issues/110#issuecomment-441177441)
 
-In this post I'm going to answer this question. 
+In this chapter, I'm going to answer this question. 
 
 ## WebHostBuilderContext
 
@@ -33,7 +33,7 @@ public class Program
 }
 ```
 
-The reader wrote that he couldn't fetch the configuration inside this code. And he is true, if we are only looking at this snippet. You need to know that the method `UseKestrel()` is overloaded:
+The reader wrote that he couldn't fetch the configuration inside this code - and he had right, if we are only looking at this snippet. You need to know that the method `UseKestrel()` is overloaded:
 
 ```csharp
 .UseKestrel((host, options) =>
@@ -60,7 +60,7 @@ So lets rewrite the lambda a little bit to use this context:
 })
 ```
 
-In this sample I chose to write the keys using the colon divider because this is the way you need to read nested configurations from the `appsettings.json`:
+In this sample I choose to write the keys using the colon divider because this is the way you need to read nested configurations from the `appsettings.json`:
 
 ```json
 {
@@ -169,7 +169,7 @@ SET KESTREL_ENDPOINTS_HTTP_URL=http://localhost:5555
 
 ```
 
-Also this configuration isn't executed 
+Also this configuration isn't executed.
 
 ## Update on ASP.NET Core 3.0
 
