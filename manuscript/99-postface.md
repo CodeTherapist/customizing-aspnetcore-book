@@ -6,5 +6,5 @@ If you miss something in this book, or if you find anything that is wrong, pleas
 
 https://github.com/JuergenGutsch/customizing-aspnetcore-book/issues
 
-Fee also free to write a pull request to fix some mistakes. If you do so and if your pull request gets accepted I will mention you in the preface of this book and in the readme of the book repository.
+Feel also free to write a pull request to fix some mistakes. If you do so and if your pull request gets accepted I will mention you in the preface of this book and in the readme of the book repository.
 
